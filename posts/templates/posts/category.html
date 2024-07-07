@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load favorite %}
+{% block content %}
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text">
+        <section class="page-heading">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-content">
+                            <h4></h4>
+                            <h2>posts in {{ category.name }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Banner Ends Here -->
+
+    <section class="call-to-action">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main-content">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <span>Stand Blog HTML5 Template</span>
+                                <h4>Creative HTML Template For Bloggers!</h4>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="main-button">
+                                    <a href="https://templatemo.com/tm-551-stand-blog" target="_parent">Download
+                                        Now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="blog-posts grid-system">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="all-blog-posts">
+                        <div class="row">
+                            {% for post in posts.object_list %}
+                                <div class="col-lg-6">
+                                    <div class="blog-post">
+                                        <div class="blog-thumb">
+                                            <img src="{{ post.image.url }}" alt="">
+                                        </div>
+                                        <div class="down-content">
+                                            {% if post.post_type == 'VIP' %}
+                                                <span><img src="{% static 'images/icons/diamond.png' %}"
+                                                           style="height: 50px;width: 50px">  پست ویژه
+                                        </span>
+                                            {% endif %}
+                                            <a href="{{ post.get_absolute_url }}"><h4>{{ post.title }}</h4></a>
+                                            <ul class="post-info">
+                                                <li><a>{{ post.author.username }}</a></li>
+                                                <li><a>{{ post.created }}</a></li>
+                                                <li><a>48 Comments</a></li>
+                                                <li><a>{% favorite_link post %}</a></li>
+                                            </ul>
+                                            <p>{{ post.description|safe }}</p>
+                                            <div class="post-options">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <ul class="post-tags">
+                                                            <li><i class="fa fa-tags"></i></li>
+                                                            {% for cat in post.category.all %}
+                                                                <li><a href="#">{{ cat.name }}</a>,</li>
+                                                            {% empty %}
+                                                                no category
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- Pagination Controls -->
+                            <div class="pagination">
+                                <ul class="page-numbers">
+                                    {% if posts.has_previous %}
+                                        <li><a href="?page=1">&laquo;</a></li>
+                                    {% else %}
+                                        <li class="disabled"><a href="#">&laquo;</a></li>
+                                    {% endif %}
+
+                                    {% for num in posts.paginator.page_range %}
+                                        {% if posts.number == num %}
+                                            <li class="active"><a href="#">{{ num }}</a></li>
+                                        {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+                                            <li><a href="?page={{ num }}">{{ num }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if posts.has_next %}
+                                        <li><a href="?page={{ posts.paginator.num_pages }}">&raquo;</a></li>
+                                    {% else %}
+                                        <li class="disabled"><a href="#">&raquo;</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

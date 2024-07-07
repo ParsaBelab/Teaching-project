@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <div style="margin-top: 260px">
+            <h4 class="text-center">{{ user.username }}</h4>
+            {% if user.is_premium %}
+                <p>مشترک ویژه تا {{ user.premium_to|timeuntil }}</p>
+            {% else %}
+                <p>شما مشترک ویژه نیستید</p>
+            {% endif %}
+            {% if user.job %}
+                <p class="text-center">{{ user.job }}</p>
+            {% endif %}
+            <div class="text-center">
+                <a href="{% url 'accounts:editprofile' %}" class="btn btn-outline-primary">ویرایش</a>
+                <a href="{% url 'accounts:editpassword' %}" class="btn btn-outline-primary">ویرایش رمز عبور</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

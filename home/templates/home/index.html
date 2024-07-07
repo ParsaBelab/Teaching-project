@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load favorite %}
+{% block content %}
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="main-banner header-text">
+        <div class="container-fluid">
+            <div class="owl-banner owl-carousel">
+                <div class="item">
+                    <img src="{% static 'assets/images/banner-item-01.jpg' %}" alt="">
+                    <div class="item-content">
+                        <div class="main-content">
+                            <div class="meta-category">
+                                <span>Fashion</span>
+                            </div>
+                            <a href="post-details.html"><h4>Morbi dapibus condimentum</h4></a>
+                            <ul class="post-info">
+                                <li><a href="#">Admin</a></li>
+                                <li><a href="#">May 12, 2020</a></li>
+                                <li><a href="#">12 Comments</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src=" {% static 'assets/images/banner-item-02.jpg' %}" alt="">
+                    <div class="item-content">
+                        <div class="main-content">
+                            <div class="meta-category">
+                                <span>Nature</span>
+                            </div>
+                            <a href="post-details.html"><h4>Donec porttitor augue at velit</h4></a>
+                            <ul class="post-info">
+                                <li><a href="#">Admin</a></li>
+                                <li><a href="#">May 14, 2020</a></li>
+                                <li><a href="#">24 Comments</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src=" {% static 'assets/images/banner-item-03.jpg' %}" alt="">
+                    <div class="item-content">
+                        <div class="main-content">
+                            <div class="meta-category">
+                                <span>Lifestyle</span>
+                            </div>
+                            <a href="post-details.html"><h4>Best HTML Templates on TemplateMo</h4></a>
+                            <ul class="post-info">
+                                <li><a href="#">Admin</a></li>
+                                <li><a href="#">May 16, 2020</a></li>
+                                <li><a href="#">36 Comments</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Ends Here -->
+
+    <section class="blog-posts">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="all-blog-posts">
+                        <div class="row">
+                            {% for post in posts.object_list %}
+                                <div class="col-lg-12">
+                                    <div class="blog-post">
+                                        <div class="blog-thumb">
+                                            <img src="{{ post.image.url }}" alt="">
+                                        </div>
+                                        <div class="down-content">
+                                            {% if post.post_type == 'VIP' %}
+                                                <span><img src="{% static 'images/icons/diamond.png' %}"
+                                                           style="height: 50px;width: 50px">  پست ویژه
+                                        </span>
+                                            {% endif %}
+                                            <a href="{{ post.get_absolute_url }}"><h4>{{ post.title }}</h4></a>
+                                            <ul class="post-info">
+                                                <li><a>{{ post.author.username }}</a></li>
+                                                <li><a>{{ post.created }}</a></li>
+                                                <li><a>48 Comments</a></li>
+                                                <li><a>{% favorite_link post %}</a></li>
+                                            </ul>
+                                            <p>{{ post.description|safe }}</p>
+                                            <div class="post-options">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <ul class="post-tags">
+                                                            <li><i class="fa fa-tags"></i></li>
+                                                            {% for cat in post.category.all %}
+                                                                <li><a href="#">{{ cat.name }}</a>,</li>
+                                                            {% empty %}
+                                                                no category
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <ul class="post-share">
+                                                            <li><i class="fa fa-share-alt"></i></li>
+                                                            <li><a href="#">Facebook</a>,</li>
+                                                            <li><a href="#">Twitter</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="col-lg-12">
+                                <!-- Pagination Controls -->
+                                <div class="pagination">
+                                    <ul class="page-numbers">
+                                        {% if posts.has_previous %}
+                                            <li><a href="?page=1">&laquo;</a></li>
+                                        {% else %}
+                                            <li class="disabled"><a href="#">&laquo;</a></li>
+                                        {% endif %}
+
+                                        {% for num in posts.paginator.page_range %}
+                                            {% if posts.number == num %}
+                                                <li class="active"><a href="#">{{ num }}</a></li>
+                                            {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+                                                <li><a href="?page={{ num }}">{{ num }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if posts.has_next %}
+                                            <li><a href="?page={{ posts.paginator.num_pages }}">&raquo;</a></li>
+                                        {% else %}
+                                            <li class="disabled"><a href="#">&raquo;</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="sidebar-item search">
+                                    <form id="search_form" name="gs" method="GET" action="#">
+                                        <input type="text" name="q" class="searchText"
+                                               placeholder="type to search..."
+                                               autocomplete="on">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="sidebar-item recent-posts">
+                                    <div class="sidebar-heading">
+                                        <h2>Recent Posts</h2>
+                                    </div>
+                                    <div class="content">
+                                        <ul>
+                                            {% for recent_post in recent_posts %}
+                                                <li><a href="{% url 'Home:post-detail' recent_post.id recent_post.slug %}">
+                                                <h5>{{ recent_post.title }}</h5>
+                                                <span>{{ recent_post.created }}</span>
+                                            </a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="sidebar-item categories">
+                                    <div class="sidebar-heading">
+                                        <h2>دسته بندی ها</h2>
+                                    </div>
+                                    <div class="content">
+                                        <ul>
+                                            {% for category in categories %}
+                                                <li>-<a href="#">{{ category.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/favoriets.js' %}"></script>
+
+{% endblock %}
