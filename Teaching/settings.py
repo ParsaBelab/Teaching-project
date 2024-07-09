@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'mptt',
     'django_cleanup.apps.CleanupConfig',
+    "azbankgateways",
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,16 @@ CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+AZ_IRANIAN_BANK_GATEWAYS = {
+    "GATEWAYS": {
+        "ZARINPAL": {
+            "MERCHANT_CODE": "53213d94-abc2-11ea-ba4e-000c295eb8fc",
+            "SANDBOX": 1,  # 0 disable, 1 active
+        },
+    },
+    "CURRENCY": "IRT",
+    'IS_SAFE_GET_GATEWAY_PAYMENT': True,
+    "DEFAULT": "ZARINPAL",
+
+}

@@ -13,7 +13,6 @@ class RegisterView(View):
     template_name = 'accounts/register.html'
 
     def dispatch(self, request, *args, **kwargs):
-        print(request.user)
         if request.user.is_authenticated:
             messages.error(request, 'شما قبلا وارد شده اید', 'danger')
             return redirect('Home:home')
@@ -101,7 +100,9 @@ class LoginView(View):
             user = authenticate(request, username=phone_number, password=cd['password'])
             if user is not None:
                 login(request, user)
-            return redirect('Home:home')
+                return redirect('accounts:profile', user.id)
+            return redirect('accounts:register')
+        return redirect('Home:home')
 
 
 class LogoutView(View):
