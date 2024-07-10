@@ -61,15 +61,6 @@ class Comment(MPTTModel):
         order_insertion_by = ['-created']
 
 
-class Like(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='plikes')
-    liked_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ulikes')
-    created = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f'{self.liked_by} liked {self.post.slug}'
-
-
 class Category(MPTTModel):
     name = models.CharField(max_length=70)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='subs')
