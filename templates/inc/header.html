@@ -1,6 +1,7 @@
 {% load static %}
+{% load i18n %} {% get_current_language_bidi as LANGUAGE_BIDI %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 
 <head>
 
@@ -11,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
           rel="stylesheet">
 
-    <title>Stand CSS Blog by TemplateMo</title>
+    <title>Nothing Here</title>
 
     <!-- Bootstrap core CSS -->
     <link href=" {% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -23,9 +24,6 @@
     <link rel="stylesheet" href=" {% static 'assets/css/owl.css' %}">
 
     <style>
-        html {
-            direction: rtl;
-        }
 
         @font-face {
             font-family: Ray;
@@ -68,28 +66,46 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'Home:home' %}">خانه</a>
+                        <a class="nav-link" href="{% url 'Home:home' %}">{% trans 'Home' %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'categories:all' %}">دسته بندی ها</a>
+                        <a class="nav-link" href="{% url 'categories:all' %}">{% trans 'Categories' %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Prices:price' %}">قیمت ها</a>
+                        <a class="nav-link" href="{% url 'Prices:price' %}">{% trans 'Prices' %}</a>
                     </li>
                     {% if not request.user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href={% url 'accounts:register' %}>ثبت نام/ ورود</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href={% url 'accounts:register' %}>{% trans 'Login/Register' %}</a>
+                        </li>
                     {% else %}
                         <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:profile' request.user.id %}">پروفایل</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href={% url 'accounts:logout' %}>خروج</a>
-                    </li>
+                            <a class="nav-link"
+                               href="{% url 'accounts:profile' request.user.id %}">{% trans 'Profile' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href={% url 'accounts:logout' %}>{% trans 'Logout' %}</a>
+                        </li>
                     {% endif %}
                 </ul>
+                <div class="container">
+                    {% get_current_language as CURRENT_LANGUAGE %}
+                    {% get_available_languages as AVAILABLE_LANGUAGES %}
+                    {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+                    <div class="languages">
+                        <p>{% trans "Language" %}:</p>
+                        <ul class="languages">
+                            {% for language in languages %}
+                                <li>
+                                    <a href="/{{ language.code }}/"
+                                            {% if language.code == CURRENT_LANGUAGE %} class="active"{% endif %}>
+                                        {{ language.name_local }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
     </nav>
 </header>

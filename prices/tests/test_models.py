@@ -12,17 +12,17 @@ class PriceModelTest(TestCase):
     def test_name_label(self):
         price = Price.objects.get(id=1)
         field_label = price._meta.get_field('name').verbose_name
-        self.assertEqual(field_label, 'عنوان')
+        self.assertEqual(field_label, 'name')
 
     def test_days_label(self):
         price = Price.objects.get(id=1)
         field_label = price._meta.get_field('days').verbose_name
-        self.assertEqual(field_label, 'روز های اشتراک')
+        self.assertEqual(field_label, 'days')
 
     def test_value_label(self):
         price = Price.objects.get(id=1)
         field_label = price._meta.get_field('value').verbose_name
-        self.assertEqual(field_label, 'قیمت')
+        self.assertEqual(field_label, 'value')
 
     def test_ordering(self):
         prices = Price.objects.all()

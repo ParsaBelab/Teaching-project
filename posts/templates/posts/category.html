@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load favorite %}
+{% load i18n %}
 {% block content %}
     <!-- Page Content -->
     <!-- Banner Starts Here -->
@@ -11,7 +12,7 @@
                     <div class="col-lg-12">
                         <div class="text-content">
                             <h4></h4>
-                            <h2>posts in {{ category.name }}</h2>
+                            <h2>{% trans 'posts in' %} {{ category.name }}</h2>
                         </div>
                     </div>
                 </div>
@@ -20,30 +21,6 @@
     </div>
 
     <!-- Banner Ends Here -->
-
-    <section class="call-to-action">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="main-content">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <span>Stand Blog HTML5 Template</span>
-                                <h4>Creative HTML Template For Bloggers!</h4>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="main-button">
-                                    <a href="https://templatemo.com/tm-551-stand-blog" target="_parent">Download
-                                        Now!</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     <section class="blog-posts grid-system">
         <div class="container">
@@ -60,7 +37,7 @@
                                         <div class="down-content">
                                             {% if post.post_type == 'VIP' %}
                                                 <span><img src="{% static 'images/icons/diamond.png' %}"
-                                                           style="height: 50px;width: 50px">  پست ویژه
+                                                           style="height: 50px;width: 50px"> {% trans 'Premium Post' %}
                                         </span>
                                             {% endif %}
                                             <a href="{{ post.get_absolute_url }}"><h4>{{ post.title }}</h4></a>
@@ -79,7 +56,7 @@
                                                             {% for cat in post.category.all %}
                                                                 <li><a href="#">{{ cat.name }}</a>,</li>
                                                             {% empty %}
-                                                                no category
+                                                                {% trans ' no category' %}
                                                             {% endfor %}
                                                         </ul>
                                                     </div>

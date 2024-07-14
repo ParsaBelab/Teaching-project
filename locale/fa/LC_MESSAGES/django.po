@@ -1,0 +1,259 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-13 12:40+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\Teaching\settings.py:123
+msgid "English"
+msgstr "انگلیسی"
+
+#: .\Teaching\settings.py:124
+msgid "فارسی"
+msgstr "فارسی"
+
+#: .\accounts\forms.py:11 .\accounts\forms.py:55 .\accounts\forms.py:66
+msgid "password"
+msgstr "رمز عبور"
+
+#: .\accounts\forms.py:12 .\accounts\forms.py:56
+msgid "submit password"
+msgstr "تایید رمز عبور"
+
+#: .\accounts\forms.py:19 .\accounts\forms.py:49
+msgid "phone number"
+msgstr "شماره تلفن"
+
+#: .\accounts\forms.py:20 .\accounts\forms.py:50
+msgid "username"
+msgstr "نام کاربری"
+
+#: .\accounts\forms.py:26 .\accounts\forms.py:61 .\accounts\forms.py:95
+msgid "passwords does not match"
+msgstr "رمز عبور مطابقت ندارد"
+
+#: .\accounts\forms.py:39
+msgid "you can change your password from <a href=\"../password\"> link"
+msgstr "شما میتوانید رمز عبور خود را از<a href=\"../password\">این لینک </a>عوض کنید"
+
+#: .\accounts\forms.py:54
+msgid "code"
+msgstr "کد"
+
+#: .\accounts\forms.py:78
+msgid "Username"
+msgstr "نام کاربری"
+
+#: .\accounts\forms.py:78
+msgid "full_name"
+msgstr "نام کامل"
+
+#: .\accounts\forms.py:78
+msgid "Job"
+msgstr "شغل"
+
+#: .\accounts\forms.py:83
+msgid "Enter current password"
+msgstr "رمز عبور فعلی را وارد کنید"
+
+#: .\accounts\forms.py:88
+#, fuzzy
+#| msgid "Edit Password"
+msgid "new password"
+msgstr "تغییر رمز عبور"
+
+#: .\accounts\forms.py:90
+#, fuzzy
+#| msgid "Edit Password"
+msgid "submit new password"
+msgstr "تغییر رمز عبور"
+
+#: .\accounts\templates\accounts\edit-password.html:12
+#: .\accounts\templates\accounts\edit-profile.html:12
+#: .\accounts\templates\accounts\reset-password.html:11
+msgid "Edit"
+msgstr "ویرایش"
+
+#: .\accounts\templates\accounts\login.html:8
+#: .\accounts\templates\accounts\login.html:24
+msgid "Login"
+msgstr "ورود"
+
+#: .\accounts\templates\accounts\login.html:29
+#: .\accounts\templates\accounts\register.html:29
+#: .\accounts\templates\accounts\verify.html:30
+#: .\home\templates\home\post-detail.html:101
+#: .\home\templates\home\post-detail.html:122
+msgid "Send"
+msgstr "ارسال"
+
+#: .\accounts\templates\accounts\profile.html:10
+msgid "You are premium until"
+msgstr "ویژه تا "
+
+#: .\accounts\templates\accounts\profile.html:12
+msgid "You are not premium"
+msgstr "شما کاربر ویژه نیستید"
+
+#: .\accounts\templates\accounts\profile.html:18
+msgid "Edit profile"
+msgstr "تغییر پروفایل"
+
+#: .\accounts\templates\accounts\profile.html:19
+msgid "Edit Password"
+msgstr "تغییر رمز عبور"
+
+#: .\accounts\templates\accounts\register.html:8
+#: .\accounts\templates\accounts\register.html:24
+#, fuzzy
+#| msgid "Login/Register"
+msgid "Register"
+msgstr "ورود/ثبت نام"
+
+#: .\accounts\templates\accounts\verify.html:9
+msgid "Verify"
+msgstr "احراز"
+
+#: .\accounts\templates\accounts\verify.html:25
+msgid "Enter Recived Code"
+msgstr "کد وارد شده را وارد کنیذ"
+
+#: .\home\forms.py:10
+msgid "Your Comment"
+msgstr "نظر شما"
+
+#: .\home\templates\home\index.html:31 .\posts\templates\posts\category.html:40
+msgid "Premium Post"
+msgstr "پست ویژه"
+
+#: .\home\templates\home\index.html:38
+msgid "Comment"
+msgstr "کامنت"
+
+#: .\home\templates\home\index.html:50
+#: .\home\templates\home\post-detail.html:50
+msgid "no category"
+msgstr "بدون دسته بندی"
+
+#: .\home\templates\home\index.html:96
+#: .\home\templates\home\post-detail.html:137
+msgid "type to search..."
+msgstr "جستجو..."
+
+#: .\home\templates\home\index.html:104
+#: .\home\templates\home\post-detail.html:145
+msgid "Recent Posts"
+msgstr "پست های اخیر"
+
+#: .\home\templates\home\index.html:121
+#: .\home\templates\home\post-detail.html:168
+#: .\posts\templates\posts\categories.html:7 .\templates\inc\header.html:72
+msgid "Categories"
+msgstr "دسته بندی ها"
+
+#: .\home\templates\home\post-detail.html:38
+msgid "ago"
+msgstr "پیش"
+
+#: .\home\templates\home\post-detail.html:62
+msgid "comment"
+msgstr "کامنت"
+
+#: .\home\templates\home\post-detail.html:92
+msgid "Your Reply"
+msgstr "پاسخ شما"
+
+#: .\home\templates\home\post-detail.html:115
+msgid "Your comment"
+msgstr "نظر شما"
+
+#: .\home\templates\home\post-detail.html:185
+msgid "Related Posts"
+msgstr "پست های مرتبط"
+
+#: .\home\templates\home\post-detail.html:195
+msgid "There is no Related Post"
+msgstr "پست مرتبطی موجود نیست"
+
+#: .\posts\templates\posts\categories.html:14
+msgid "Posts"
+msgstr "پست ها"
+
+#: .\posts\templates\posts\category.html:15
+msgid "posts in"
+msgstr "پست های "
+
+#: .\posts\templates\posts\category.html:59
+msgid " no category"
+msgstr "بدون دسته بندی"
+
+#: .\prices\models.py:6
+msgid "name"
+msgstr "عنوان"
+
+#: .\prices\models.py:7
+msgid "days"
+msgstr "روزها"
+
+#: .\prices\models.py:8
+msgid "value"
+msgstr "قیمت"
+
+#: .\prices\models.py:12
+#, fuzzy
+#| msgid "Prices"
+msgid "Price"
+msgstr "قیمت ها"
+
+#: .\prices\models.py:13 .\templates\inc\header.html:75
+msgid "Prices"
+msgstr "قیمت ها"
+
+#: .\prices\templates\prices\price.html:13
+msgid "Our Plans"
+msgstr "تعرفه های ما"
+
+#: .\prices\templates\prices\price.html:31
+msgid "$"
+msgstr "تومان"
+
+#: .\prices\templates\prices\price.html:32
+msgid "Buy"
+msgstr "خرید"
+
+#: .\templates\inc\header.html:69
+msgid "Home"
+msgstr "خانه"
+
+#: .\templates\inc\header.html:79
+msgid "Login/Register"
+msgstr "ورود/ثبت نام"
+
+#: .\templates\inc\header.html:84
+msgid "Profile"
+msgstr "پروفایل"
+
+#: .\templates\inc\header.html:87
+msgid "Logout"
+msgstr "خروج"
+
+#: .\templates\inc\header.html:96
+msgid "Language"
+msgstr "زبان"
+
+#~ msgid "Persian"
+#~ msgstr "فارسی"

@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block content %}
     {% load static %}
     <!DOCTYPE html>
     <html lang="en">
     <head>
-        <title>Login V8</title>
+        <title>{% trans 'Login' %}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--===============================================================================================-->
@@ -21,12 +21,12 @@
                 <form class="login100-form validate-form p-l-55 p-r-55 p-t-140" method="post" style="height: 300px">
                     {% csrf_token %}
                     <span class="login100-form-title mb-100">
-                    <h3 class="">ثبت نام</h3>
+                    <h3 class="">{% trans 'Login' %}</h3>
                     {{ form }}
                 </span>
 
                     <div class="container-login100-form-btn" style="margin-top: 75px">
-                        <input type="submit" value="ارسال" class="login100-form-btn">
+                        <input type="submit" value="{% trans 'Send' %}" class="login100-form-btn">
                     </div>
                 </form>
             </div>

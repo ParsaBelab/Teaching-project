@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 
 {% block content %}
@@ -8,7 +9,7 @@
             <form novalidate method="post" action="" style="margin-top: 260px">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Edit" class="btn btn-primary m-3">
+                <input type="submit" value="{% trans 'Edit' %}" class="btn btn-primary m-3">
             </form>
         </div>
     </div>

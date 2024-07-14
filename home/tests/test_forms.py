@@ -15,4 +15,4 @@ class CommentFormTest(TestCase):
 
     def test_comment_form_label(self):
         form = CommentForm()
-        self.assertEqual(form.fields['body'].label, 'کامنت')
+        self.assertEqual(form.fields['body'].label, 'Your Comment')

@@ -10,7 +10,7 @@ $(document).ready(function () {
                 'csrfmiddlewaretoken': '{{ csrf_token }}'
             },
             success: function (response) {
-                if (response.action == 'liked') {
+                if (response.action === 'liked') {
                     link.html('❤️');
                 } else {
                     link.html('🤍');

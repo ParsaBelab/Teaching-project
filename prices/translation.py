@@ -1,9 +1,9 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import Post
+from .models import Price
 
 
-class PostTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'text')
+class PriceTranslationOptions(TranslationOptions):
+    fields = ('name', 'value')
 
 
-translator.register(Post, PostTranslationOptions)
+translator.register(Price, PriceTranslationOptions)

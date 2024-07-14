@@ -4,21 +4,26 @@ from django.core.exceptions import ValidationError
 
 from .models import User
 from phonenumber_field.formfields import PhoneNumberField
+from django.utils.translation import gettext_lazy as _
 
 
 class UserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label='رمز عبور', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='تایید رمز عبور', widget=forms.PasswordInput)
+    password1 = forms.CharField(label=_('password'), widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_('submit password'), widget=forms.PasswordInput)
     phone_number = PhoneNumberField(region='IR')
 
     class Meta:
         model = User
         fields = ('phone_number', 'username')
+        labels = {
+            'phone_number': _('phone number'),
+            'username': _('username'),
+        }
 
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password1'] and cd['password2'] and cd['password1'] != cd['password2']:
-            raise ValidationError('رمز عبور یکسان نیست')
+            raise ValidationError(_('passwords does not match'))
         return cd['password2']
 
     def save(self, commit=True):
@@ -31,7 +36,9 @@ class UserCreationForm(forms.ModelForm):
 
 class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField(
-        help_text='شما میتوانید رمز عبور خود را از<a href="../password">این لینک </a>عوض کنید')
+        help_text=_('you can change your password from <a href="../password"> link'))
+
+    # 'شما میتوانید رمز عبور خود را از<a href="../password">این لینک </a>عوض کنید'
 
     class Meta:
         model = User
@@ -39,24 +46,24 @@ class UserChangeForm(forms.ModelForm):
 
 
 class UserForm(forms.Form):
-    phone_number = PhoneNumberField(region='IR', label='شماره تلفن')
-    username = forms.CharField(label='نام کاربری')
+    phone_number = PhoneNumberField(region='IR', label=_('phone number'))
+    username = forms.CharField(label=_('username'))
 
 
 class VerifyForm(forms.Form):
-    code = forms.IntegerField(label='کد', widget=forms.PasswordInput)
-    password1 = forms.CharField(label='رمز عبور', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='تایید رمز عبور', widget=forms.PasswordInput)
+    code = forms.IntegerField(label=_('code'), widget=forms.PasswordInput)
+    password1 = forms.CharField(label=_('password'), widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_('submit password'), widget=forms.PasswordInput)
 
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password1'] and cd['password2'] and cd['password1'] != cd['password2']:
-            raise ValidationError('رمز عبور یکسان نیست')
+            raise ValidationError(_('passwords does not match'))
         return cd['password2']
 
 
 class LoginForm(forms.Form):
-    password = forms.CharField(label='رمز عبور', widget=forms.PasswordInput)
+    password = forms.CharField(label=_('password'), widget=forms.PasswordInput)
 
 
 class EditProfileForm(forms.ModelForm):
@@ -68,21 +75,22 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'full_name', 'job')
+        labels = {'username': _('Username'), 'full_name': _('full_name'), 'job': _('Job')}
 
 
 class EditPasswordForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}),
-                               label='پسورد فعلی خود را وارد کنید')
+                               label=_('Enter current password'))
 
 
 class ResetPasswordForm(forms.Form):
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}),
-                                label='پسورد جدید')
+                                label=_('new password'))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}),
-                                label='تایید پسورد')
+                                label=_('submit new password'))
 
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password1'] and cd['password2'] and cd['password1'] != cd['password2']:
-            raise ValidationError('رمز عبور یکسان نیست')
+            raise ValidationError(_('passwords does not match'))
         return cd['password2']

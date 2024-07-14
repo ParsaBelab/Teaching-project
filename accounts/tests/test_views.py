@@ -66,7 +66,7 @@ class RegisterViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'accounts/register.html')
         self.assertTrue(form.has_error)
-        self.assertFormError(form, 'phone_number', 'این فیلد لازم است.')
+        self.assertFormError(form, 'phone_number', 'This field is required.')
 
 
 class VerifyViewTest(TestCase):

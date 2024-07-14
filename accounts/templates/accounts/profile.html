@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
     <div class="d-flex justify-content-center">
         <div style="margin-top: 260px">
             <h4 class="text-center">{{ user.username }}</h4>
             {% if user.is_premium %}
-                <p>مشترک ویژه تا {{ user.premium_to|timeuntil }}</p>
+                <p>{% trans 'You are premium until' %} {{ user.premium_to|timeuntil }}</p>
             {% else %}
-                <p>شما مشترک ویژه نیستید</p>
+                <p>{% trans 'You are not premium' %}</p>
             {% endif %}
             {% if user.job %}
                 <p class="text-center">{{ user.job }}</p>
             {% endif %}
             <div class="text-center">
-                <a href="{% url 'accounts:editprofile' %}" class="btn btn-outline-primary">ویرایش</a>
-                <a href="{% url 'accounts:editpassword' %}" class="btn btn-outline-primary">ویرایش رمز عبور</a>
+                <a href="{% url 'accounts:editprofile' %}" class="btn btn-outline-primary">{% trans 'Edit profile' %}</a>
+                <a href="{% url 'accounts:editpassword' %}" class="btn btn-outline-primary">{% trans 'Edit Password' %}</a>
             </div>
         </div>
     </div>

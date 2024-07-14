@@ -40,8 +40,9 @@ class PostDetailView(View):
         form = self.form_class()
         post = self.post_instance
         rposts = post.get_related_posts_by_category()
+        categories = Category.objects.all()
         comments = Comment.objects.filter(post=post, is_reply=False)
-        return render(request, self.template_name, {'post': post, 'rposts': rposts, 'comments': comments, 'form': form})
+        return render(request, self.template_name, {'post': post, 'rposts': rposts, 'comments': comments, 'form': form , 'categories':categories})
 
     def post(self, request, post_id, slug):
         form = self.form_class(request.POST)

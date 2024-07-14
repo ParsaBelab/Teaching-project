@@ -39,13 +39,13 @@ class UserCreationFormTest(TestCase):
         form = UserCreationForm(data=self.invalid_data_password_mismatch)
         self.assertFalse(form.is_valid())
         self.assertIn('password2', form.errors)
-        self.assertEqual(form.errors['password2'], ['رمز عبور یکسان نیست'])
+        self.assertEqual(form.errors['password2'], ['passwords does not match'])
 
     def test_form_missing_field(self):
         form = UserCreationForm(data=self.invalid_data_missing_field)
         self.assertFalse(form.is_valid())
         self.assertIn('phone_number', form.errors)
-        self.assertEqual(form.errors['phone_number'], ['این فیلد لازم است.'])
+        self.assertEqual(form.errors['phone_number'], ['This field is required.'])
 
     def test_form_invalid_phone_number(self):
         form = UserCreationForm(data=self.invalid_data_invalid_phone)

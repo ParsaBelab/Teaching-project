@@ -12,6 +12,7 @@ class Post(models.Model):
         ('NORMAL', 'معمولی'),
         ('VIP', 'ویژه'),
     )
+
     title = models.CharField(max_length=100, verbose_name='عنوان')
     image = models.ImageField(upload_to='posts/image/', verbose_name='تصویر')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='نویسنده')

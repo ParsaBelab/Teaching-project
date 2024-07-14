@@ -9,6 +9,10 @@
   font-family: Ubuntu-Regular;
   src: url('../fonts/ubuntu/Ubuntu-Regular.ttf'); 
 }
+@font-face {
+  font-family: Ray;
+  src: url('../assets/fonts/Ray.ttf');
+}
 
 @font-face {
   font-family: Ubuntu-Bold;
@@ -29,6 +33,7 @@
 	margin: 0px; 
 	padding: 0px; 
 	box-sizing: border-box;
+    font-family: Ray;
 }
 
 body, html {
