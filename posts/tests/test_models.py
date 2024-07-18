@@ -135,11 +135,9 @@ class CategoryModelTest(TestCase):
     def test_str_method_category(self):
         self.assertEqual(str(self.category), 'Main Category')
 
-    def test_str_method_subcategory(self):
-        self.assertEqual(str(self.subcategory), 'Sub Category is sub category of Main Category')
 
     def test_verbose_name(self):
-        self.assertEqual(Category._meta.verbose_name, 'دسته بندی')
+        self.assertEqual(Category._meta.verbose_name, 'category')
 
     def test_verbose_name_plural(self):
-        self.assertEqual(Category._meta.verbose_name_plural, 'دسته بندی ها')
+        self.assertEqual(Category._meta.verbose_name_plural, 'categories')

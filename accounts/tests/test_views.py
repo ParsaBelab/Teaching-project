@@ -1,5 +1,8 @@
 from django.test import TestCase, Client
 from django.urls import reverse
+from django.utils import translation
+from django.utils.translation import activate
+
 from accounts.models import User
 from accounts.models import OTPCode
 from django.contrib.messages import get_messages
@@ -223,7 +226,6 @@ class ProfileViewTest(TestCase):
 
     def test_get_profile_unauthenticated(self):
         response = self.client.get(self.profile_url)
-        self.assertEqual(response.status_code, 302)
         expected_url = f"{self.register_url}?next={self.profile_url}"
         self.assertRedirects(response, expected_url)
 

@@ -1,8 +1,7 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserChangeForm, UserCreationForm
-from django.contrib.auth.models import Group
-
 from .models import User, OTPCode
 
 
@@ -20,7 +19,6 @@ class UserAdmin(BaseUserAdmin):
         (None, {'fields': ('phone_number', 'username', 'password1', 'password2')}),
     )
     search_fields = ('username', 'phone_number')
-    ordering = ('-created',)
     filter_horizontal = ()
 
 

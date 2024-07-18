@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-13 12:40+0330\n"
+"POT-Creation-Date: 2024-07-14 15:27+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\Teaching\settings.py:123
+#: .\Teaching\settings.py:124
 msgid "English"
 msgstr "انگلیسی"
 
-#: .\Teaching\settings.py:124
+#: .\Teaching\settings.py:125
 msgid "فارسی"
 msgstr "فارسی"
 
@@ -34,11 +34,12 @@ msgstr "رمز عبور"
 msgid "submit password"
 msgstr "تایید رمز عبور"
 
-#: .\accounts\forms.py:19 .\accounts\forms.py:49
+#: .\accounts\forms.py:19 .\accounts\forms.py:49 .\accounts\models.py:14
+#: .\accounts\models.py:78
 msgid "phone number"
 msgstr "شماره تلفن"
 
-#: .\accounts\forms.py:20 .\accounts\forms.py:50
+#: .\accounts\forms.py:20 .\accounts\forms.py:50 .\accounts\models.py:18
 msgid "username"
 msgstr "نام کاربری"
 
@@ -48,9 +49,10 @@ msgstr "رمز عبور مطابقت ندارد"
 
 #: .\accounts\forms.py:39
 msgid "you can change your password from <a href=\"../password\"> link"
-msgstr "شما میتوانید رمز عبور خود را از<a href=\"../password\">این لینک </a>عوض کنید"
+msgstr ""
+"شما میتوانید رمز عبور خود را از<a href=\"../password\">این لینک </a>عوض کنید"
 
-#: .\accounts\forms.py:54
+#: .\accounts\forms.py:54 .\accounts\models.py:79
 msgid "code"
 msgstr "کد"
 
@@ -71,16 +73,48 @@ msgid "Enter current password"
 msgstr "رمز عبور فعلی را وارد کنید"
 
 #: .\accounts\forms.py:88
-#, fuzzy
-#| msgid "Edit Password"
 msgid "new password"
-msgstr "تغییر رمز عبور"
+msgstr "رمز عبور جدید"
 
 #: .\accounts\forms.py:90
-#, fuzzy
-#| msgid "Edit Password"
 msgid "submit new password"
-msgstr "تغییر رمز عبور"
+msgstr "تایید رمز عبور"
+
+#: .\accounts\models.py:22
+msgid "active"
+msgstr "فعال"
+
+#: .\accounts\models.py:25
+msgid "admin"
+msgstr "ادمین"
+
+#: .\accounts\models.py:29
+msgid "premium"
+msgstr "پست ویژه"
+
+#: .\accounts\models.py:32
+msgid "premium to"
+msgstr "ویژه تا"
+
+#: .\accounts\models.py:40
+msgid "job"
+msgstr "شغل"
+
+#: .\accounts\models.py:46
+msgid "full name"
+msgstr "نام کامل"
+
+#: .\accounts\models.py:73
+msgid "User"
+msgstr "کاربر"
+
+#: .\accounts\models.py:74
+msgid "Users"
+msgstr "کاربران"
+
+#: .\accounts\models.py:80
+msgid "created"
+msgstr "ساخته شده"
 
 #: .\accounts\templates\accounts\edit-password.html:12
 #: .\accounts\templates\accounts\edit-profile.html:12
@@ -132,6 +166,10 @@ msgstr "احراز"
 msgid "Enter Recived Code"
 msgstr "کد وارد شده را وارد کنیذ"
 
+#: .\home\apps.py:8 .\templates\inc\header.html:69
+msgid "Home"
+msgstr "خانه"
+
 #: .\home\forms.py:10
 msgid "Your Comment"
 msgstr "نظر شما"
@@ -149,18 +187,12 @@ msgstr "کامنت"
 msgid "no category"
 msgstr "بدون دسته بندی"
 
-#: .\home\templates\home\index.html:96
-#: .\home\templates\home\post-detail.html:137
-msgid "type to search..."
-msgstr "جستجو..."
-
-#: .\home\templates\home\index.html:104
-#: .\home\templates\home\post-detail.html:145
+#: .\home\templates\home\index.html:97
 msgid "Recent Posts"
 msgstr "پست های اخیر"
 
-#: .\home\templates\home\index.html:121
-#: .\home\templates\home\post-detail.html:168
+#: .\home\templates\home\index.html:114
+#: .\home\templates\home\post-detail.html:142
 #: .\posts\templates\posts\categories.html:7 .\templates\inc\header.html:72
 msgid "Categories"
 msgstr "دسته بندی ها"
@@ -169,7 +201,7 @@ msgstr "دسته بندی ها"
 msgid "ago"
 msgstr "پیش"
 
-#: .\home\templates\home\post-detail.html:62
+#: .\home\templates\home\post-detail.html:62 .\posts\models.py:116
 msgid "comment"
 msgstr "کامنت"
 
@@ -181,13 +213,84 @@ msgstr "پاسخ شما"
 msgid "Your comment"
 msgstr "نظر شما"
 
-#: .\home\templates\home\post-detail.html:185
+#: .\home\templates\home\post-detail.html:157
 msgid "Related Posts"
 msgstr "پست های مرتبط"
 
-#: .\home\templates\home\post-detail.html:195
+#: .\home\templates\home\post-detail.html:167
 msgid "There is no Related Post"
 msgstr "پست مرتبطی موجود نیست"
+
+#: .\posts\apps.py:8 .\posts\models.py:73
+msgid "posts"
+msgstr "پست ها"
+
+#: .\posts\models.py:17
+msgid "normal"
+msgstr "معمولی"
+
+#: .\posts\models.py:18
+msgid "VIP"
+msgstr "ویژه"
+
+#: .\posts\models.py:23 .\posts\models.py:123 .\prices\models.py:7
+msgid "title"
+msgstr "عنوان"
+
+#: .\posts\models.py:27
+msgid "image"
+msgstr "عکس"
+
+#: .\posts\models.py:32 .\posts\models.py:87
+msgid "author"
+msgstr "نویسنده"
+
+#: .\posts\models.py:38
+msgid "post_type"
+msgstr "نوع پست"
+
+#: .\posts\models.py:46
+msgid "description"
+msgstr "توضیحات"
+
+#: .\posts\models.py:49
+msgid "text"
+msgstr "متن"
+
+#: .\posts\models.py:72 .\posts\models.py:81
+msgid "post"
+msgstr "پست"
+
+#: .\posts\models.py:93
+msgid "reply to"
+msgstr "ریپلای به"
+
+#: .\posts\models.py:99
+msgid "is reply"
+msgstr "ریپلای"
+
+#: .\posts\models.py:117
+msgid "comments"
+msgstr "کامنت ها"
+
+#: .\posts\models.py:131
+msgid "sub of"
+msgstr "زیر مجموعه"
+
+#: .\posts\models.py:135
+#, fuzzy
+#| msgid "Categories"
+msgid "categories"
+msgstr "دسته بندی ها"
+
+#: .\posts\models.py:136
+msgid "category"
+msgstr "دسته بندی"
+
+#: .\posts\models.py:140
+#, python-brace-format
+msgid "{self.name} is sub category of {self.parent}"
+msgstr "{self.name} زیر مجموعه {self.parent}"
 
 #: .\posts\templates\posts\categories.html:14
 msgid "Posts"
@@ -201,27 +304,25 @@ msgstr "پست های "
 msgid " no category"
 msgstr "بدون دسته بندی"
 
-#: .\prices\models.py:6
-msgid "name"
-msgstr "عنوان"
+#: .\prices\apps.py:9 .\prices\models.py:20
+#, fuzzy
+#| msgid "Our Plans"
+msgid "Plans"
+msgstr "تعرفه های ما"
 
-#: .\prices\models.py:7
+#: .\prices\models.py:11
 msgid "days"
 msgstr "روزها"
 
-#: .\prices\models.py:8
+#: .\prices\models.py:14
 msgid "value"
 msgstr "قیمت"
 
-#: .\prices\models.py:12
+#: .\prices\models.py:19
 #, fuzzy
-#| msgid "Prices"
-msgid "Price"
-msgstr "قیمت ها"
-
-#: .\prices\models.py:13 .\templates\inc\header.html:75
-msgid "Prices"
-msgstr "قیمت ها"
+#| msgid "Our Plans"
+msgid "Plan"
+msgstr "تعرفه های ما"
 
 #: .\prices\templates\prices\price.html:13
 msgid "Our Plans"
@@ -235,9 +336,9 @@ msgstr "تومان"
 msgid "Buy"
 msgstr "خرید"
 
-#: .\templates\inc\header.html:69
-msgid "Home"
-msgstr "خانه"
+#: .\templates\inc\header.html:75
+msgid "Prices"
+msgstr "قیمت ها"
 
 #: .\templates\inc\header.html:79
 msgid "Login/Register"
@@ -254,6 +355,17 @@ msgstr "خروج"
 #: .\templates\inc\header.html:96
 msgid "Language"
 msgstr "زبان"
+
+#~ msgid "type to search..."
+#~ msgstr "جستجو..."
+
+#~ msgid "name"
+#~ msgstr "عنوان"
+
+#, fuzzy
+#~| msgid "Prices"
+#~ msgid "Price"
+#~ msgstr "قیمت ها"
 
 #~ msgid "Persian"
 #~ msgstr "فارسی"

@@ -1,17 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.http import JsonResponse
+
+# local
 from home.forms import CommentForm
 from posts.models import Post, Category, Comment
-from django.core.paginator import Paginator
 
 
 class HomeView(View):
     def get(self, request):
         post_list = Post.objects.all()
         paginator = Paginator(post_list, 1)
-        page_number = request.GET.get('page')
+        page_number = request.GET.get('page', 1)
         posts = paginator.get_page(page_number)
         categories = Category.objects.all()
         recent_posts = Post.objects.all()[:3]
@@ -42,7 +44,8 @@ class PostDetailView(View):
         rposts = post.get_related_posts_by_category()
         categories = Category.objects.all()
         comments = Comment.objects.filter(post=post, is_reply=False)
-        return render(request, self.template_name, {'post': post, 'rposts': rposts, 'comments': comments, 'form': form , 'categories':categories})
+        return render(request, self.template_name,
+                      {'post': post, 'rposts': rposts, 'comments': comments, 'form': form, 'categories': categories})
 
     def post(self, request, post_id, slug):
         form = self.form_class(request.POST)

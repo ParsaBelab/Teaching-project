@@ -1,17 +1,21 @@
-import datetime
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.views.generic import View
+
+# local
+from prices.models import Price
+
+# third-party
+import datetime
 from azbankgateways import (
     bankfactories,
     models as bank_models,
     default_settings as settings,
 )
-import logging
-from django.urls import reverse
 from azbankgateways.exceptions import AZBankGatewaysException
-from prices.models import Price
+import logging
 
 
 class PricesView(View):

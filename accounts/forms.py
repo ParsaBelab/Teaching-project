@@ -1,10 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
-
-from .models import User
-from phonenumber_field.formfields import PhoneNumberField
 from django.utils.translation import gettext_lazy as _
+from .models import User
+# third-party
+from phonenumber_field.formfields import PhoneNumberField
 
 
 class UserCreationForm(forms.ModelForm):

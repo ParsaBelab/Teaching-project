@@ -1,11 +1,15 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
-from random import randint
+
+# local
 from accounts.forms import *
 from accounts.models import User, OTPCode
-from django.contrib import messages
+
+# third-party
+from random import randint
 
 
 class RegisterView(View):

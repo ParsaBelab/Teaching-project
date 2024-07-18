@@ -60,5 +60,5 @@ class UserModelTest(TestCase):
         self.assertIn(post, self.user.favorites.all())
 
     def test_meta_options(self):
-        self.assertEqual(self.user._meta.verbose_name, 'کاربر')
-        self.assertEqual(self.user._meta.verbose_name_plural, 'کاربران')
+        self.assertEqual(self.user._meta.verbose_name, 'User')
+        self.assertEqual(self.user._meta.verbose_name_plural, 'Users')

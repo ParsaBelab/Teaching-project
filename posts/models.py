@@ -1,28 +1,59 @@
+# django apps
 from django.db import models
-from ckeditor.fields import RichTextField
 from django.urls import reverse
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
+# local apps
 from accounts.models import User
+from utils.abstracts import AbstractDateTime
+
+# third-party apps
+from ckeditor.fields import RichTextField
 from mptt.models import MPTTModel, TreeForeignKey
 
 
-class Post(models.Model):
+class Post(AbstractDateTime, models.Model):
     POST_TYPES = (
-        ('NORMAL', 'معمولی'),
-        ('VIP', 'ویژه'),
+        ('NORMAL', _('normal')),
+        ('VIP', _('VIP')),
     )
 
-    title = models.CharField(max_length=100, verbose_name='عنوان')
-    image = models.ImageField(upload_to='posts/image/', verbose_name='تصویر')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='نویسنده')
-    post_type = models.CharField(max_length=6, choices=POST_TYPES, default='NORMAL', verbose_name='نوع پست')
-    category = models.ManyToManyField('Category', related_name='posts')
-    description = RichTextField(verbose_name='توضیحات')
-    text = RichTextField(verbose_name='متن')
-    created = models.DateTimeField(auto_now_add=True, verbose_name='ایجاد')
-    updated = models.DateTimeField(auto_now=True, verbose_name='آپدیت')
-    slug = models.SlugField(blank=True, null=True)
+    title = models.CharField(
+        max_length=100,
+        verbose_name=_('title')
+    )
+    image = models.ImageField(
+        upload_to='posts/image/',
+        verbose_name=_('image')
+    )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name=_('author')
+    )
+    post_type = models.CharField(
+        max_length=6,
+        choices=POST_TYPES,
+        default='NORMAL',
+        verbose_name=_('post_type')
+    )
+    category = models.ManyToManyField(
+        'Category',
+        related_name='posts',
+        verbose_name='category'
+    )
+    description = RichTextField(
+        verbose_name=_('description')
+    )
+    text = RichTextField(
+        verbose_name=_('text')
+    )
+    slug = models.SlugField(
+        blank=True,
+        null=True,
+        verbose_name='slug'
+    )
 
     def get_absolute_url(self):
         return reverse('Home:post-detail', args=[self.id, self.slug])
@@ -39,18 +70,39 @@ class Post(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'پست'
-        verbose_name_plural = 'پست ها'
+        verbose_name = _('post')
+        verbose_name_plural = _('posts')
 
 
-class Comment(MPTTModel):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='pcomments')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ucomments')
-    parent = TreeForeignKey('self', on_delete=models.CASCADE, related_name='rcomments',
-                            null=True, blank=True)
-    is_reply = models.BooleanField(default=False)
-    body = models.CharField(max_length=250)
-    created = models.DateTimeField(auto_now_add=True)
+class Comment(AbstractDateTime,MPTTModel):
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name='pcomments',
+        verbose_name=_('post')
+    )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='ucomments',
+        verbose_name=_('author')
+    )
+    parent = TreeForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        related_name='rcomments',
+        verbose_name=_('reply to'),
+        null=True,
+        blank=True
+    )
+    is_reply = models.BooleanField(
+        default=False,
+        verbose_name=_('is reply')
+    )
+    body = models.CharField(
+        max_length=250,
+        verbose_name='text',
+    )
 
     def __str__(self):
         if self.is_reply:
@@ -61,17 +113,31 @@ class Comment(MPTTModel):
     class MPTTMeta:
         order_insertion_by = ['-created']
 
+    class Meta:
+        verbose_name = _('comment')
+        verbose_name_plural = _('comments')
 
-class Category(MPTTModel):
-    name = models.CharField(max_length=70)
-    parent = TreeForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='subs')
+
+class Category(AbstractDateTime,MPTTModel):
+    name = models.CharField(
+        max_length=70,
+        verbose_name=_('title')
+    )
+    parent = TreeForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        related_name='subs',
+        verbose_name=_('sub of')
+    )
 
     class Meta:
-        verbose_name_plural = 'دسته بندی ها'
-        verbose_name = 'دسته بندی'
+        verbose_name_plural = _('categories')
+        verbose_name = _('category')
 
     def __str__(self):
         if self.parent:
-            return f'{self.name} is sub category of {self.parent}'
+            return _(f'{self.name} is sub category of {self.parent}')
         else:
             return self.name

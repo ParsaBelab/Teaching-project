@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "admin_persian",
+    "admin_interface",
+    "colorfield",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,6 +65,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # local
+    'utils.middelware.ConvertDatesMiddleware'
 ]
 
 ROOT_URLCONF = 'Teaching.urls'
@@ -89,12 +94,7 @@ WSGI_APPLICATION = 'Teaching.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -144,7 +144,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-LOGIN_URL = '/accounts/register/'
+LOGIN_URL = '/en/accounts/register/'
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media/')
@@ -172,3 +172,9 @@ AZ_IRANIAN_BANK_GATEWAYS = {
     "DEFAULT": "ZARINPAL",
 
 }
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
+
+if os.environ.get('DJANGO_SETTINGS'):
+    from Teaching.local_settings import *
