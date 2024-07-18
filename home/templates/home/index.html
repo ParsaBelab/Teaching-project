@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load custom_pagination %}
 {% load favorite %}
-{% load i18n %}
 {% block content %}
+{% load i18n %}
+
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="main-banner header-text">
@@ -45,10 +45,8 @@
                                                         <ul class="post-tags">
                                                             <li><i class="fa fa-tags"></i></li>
                                                             {% for cat in post.category.all %}
-                                                                <li>
-                                                                    <a href="{% url 'categories:detail' cat.id %}">{{ cat.name }}</a>,
-                                                                </li>
-                                                                {% empty %}
+                                                                <li><a href="{% url 'categories:detail' cat.id %}">{{ cat.name }}</a>,</li>
+                                                            {% empty %}
                                                                 {% trans 'no category' %}
                                                             {% endfor %}
                                                         </ul>
@@ -61,23 +59,29 @@
                             {% endfor %}
                             <div class="col-lg-12">
                                 <!-- Pagination Controls -->
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination">
-                                        {% custom_pagination posts as pages %}
-                                        {% for page in pages %}
-                                            {% if page == '...' %}
-                                                <li class="page-item disabled"><span class="page-link">{{ page }}</span>
-                                                </li>
-                                            {% elif page == posts.number %}
-                                                <li class="page-item active"><span class="page-link">{{ page }}</span>
-                                                </li>
-                                            {% else %}
-                                                <li class="page-item"><a class="page-link"
-                                                                         href="?page={{ page }}">{{ page }}</a></li>
+                                <div class="pagination">
+                                    <ul class="page-numbers">
+                                        {% if posts.has_previous %}
+                                            <li><a href="?page=1">&laquo;</a></li>
+                                        {% else %}
+                                            <li class="disabled"><a href="#">&laquo;</a></li>
+                                        {% endif %}
+
+                                        {% for num in posts.paginator.page_range %}
+                                            {% if posts.number == num %}
+                                                <li class="active"><a href="#">{{ num }}</a></li>
+                                            {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+                                                <li><a href="?page={{ num }}">{{ num }}</a></li>
                                             {% endif %}
                                         {% endfor %}
+
+                                        {% if posts.has_next %}
+                                            <li><a href="?page={{ posts.paginator.num_pages }}">&raquo;</a></li>
+                                        {% else %}
+                                            <li class="disabled"><a href="#">&raquo;</a></li>
+                                        {% endif %}
                                     </ul>
-                                </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -95,11 +99,10 @@
                                     <div class="content">
                                         <ul>
                                             {% for recent_post in recent_posts %}
-                                                <li>
-                                                    <a href="{% url 'Home:post-detail' recent_post.id recent_post.slug %}">
-                                                        <h5>{{ recent_post.title }}</h5>
-                                                        <span>{{ recent_post.created }}</span>
-                                                    </a></li>
+                                                <li><a href="{% url 'Home:post-detail' recent_post.id recent_post.slug %}">
+                                                <h5>{{ recent_post.title }}</h5>
+                                                <span>{{ recent_post.created }}</span>
+                                            </a></li>
                                             {% endfor %}
                                         </ul>
                                     </div>
@@ -113,9 +116,7 @@
                                     <div class="content">
                                         <ul>
                                             {% for category in categories %}
-                                                <li>
-                                                    -<a href="{% url 'categories:detail' category.id %}">{{ category.name }}</a>
-                                                </li>
+                                                <li>-<a href="{% url 'categories:detail' category.id %}">{{ category.name }}</a></li>
                                             {% endfor %}
                                         </ul>
                                     </div>
