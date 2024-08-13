@@ -3,7 +3,7 @@ attrs==23.2.0
 az-iranian-bank-gateways==2.0.5
 certifi==2024.7.4
 charset-normalizer==3.3.2
-Django==5.0.6
+Django==5.0.8
 django-admin-persian-fonts==0.2
 django-ckeditor==6.6.0
 django-cleanup==8.1.0
